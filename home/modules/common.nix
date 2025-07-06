@@ -76,6 +76,7 @@
 
 		extraConfig = {
 			log.abbrevCommit = true;
+			init.defaultBranch = "main";
 		};
 	};
 
