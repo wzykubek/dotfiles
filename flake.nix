@@ -13,7 +13,20 @@
   outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }:
   let
     username = "wzykubek";
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
   in {
+    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./home/latitude.nix
+      ];
+
+      extraSpecialArgs = {
+        inherit pkgs username;
+      };
+    };
+
     darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
