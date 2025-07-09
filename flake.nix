@@ -50,24 +50,26 @@
     };
 
     nixosConfigurations."latitude" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
+
       modules = [
-        ({ pkgs, ... }: {
-          imports = [
-            (import ./modules/common.nix { inherit pkgs username; })
-            (import ./latitude.nix { inherit pkgs username; })
-          ];
-        })
-        {
-          imports = [ home-manager.nixosModules.home-manager ];
+        home-manager.nixosModules.home-manager
+        ./modules/common.nix
+        ./latitude.nix
+
+        ({ config, pkgs, ...}: {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = false;
             backupFileExtension = "bak";
-            users.${username} = { pkgs, ... }: import ./home/latitude.nix { inherit pkgs username; };
+            users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; };
           };
-        }
+        })
       ];
+
+      specialArgs = {
+        inherit pkgs username;
+      };
     };
   };
 }
