@@ -12,7 +12,7 @@
       keybindings = {
         "Mod1+return"      = "exec alacritty";
         "Mod1+space"       = "exec rofi -show drun";
-        
+
         "Mod1+h"           = "focus left";
         "Mod1+j"           = "focus down";
         "Mod1+k"           = "focus up";
@@ -29,11 +29,11 @@
         "Mod1+e"           = "layout toggle split";
         "Mod1+Control+v"   = "split vertical";
         "Mod1+Control+h"   = "split horizontal";
-        
+
         # TODO: Add smart resizing script
         # "Mod1+minus"       = "";
         # "Mod1+equal"       = "";
-        
+
         "Mod1+1" = "workspace number 1";
         "Mod1+2" = "workspace number 2";
         "Mod1+3" = "workspace number 3";
@@ -55,7 +55,8 @@
         "Mod1+Shift+9" = "move container to workspace number 9";
         "Mod1+Shift+0" = "move container to workspace number 10";
 
-        "Mod4+q" = "kill";
+        "Mod4+w" = "kill";
+        "Mod4+q" = "kill"; # TODO: Actual killall
       };
     };
   };
