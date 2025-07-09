@@ -44,6 +44,10 @@
 			];
 		};
 
+		sessionVariables = {
+		  EDITOR = "nvim";
+		};
+
 		initContent = ''
 			alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 			alias -g -- -h='--help 2>&1 | bat --language=help --style=plain'
