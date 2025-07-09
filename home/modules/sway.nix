@@ -2,7 +2,13 @@
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
-      modifier = "Mod1";
+      # Some of these bindings are weird, because I'm trying to achieve similar
+      # setup on my both machines (Linux and macOS) and unfortunately, I need to
+      # do stupind and unlogical workarounds for simple problems. Like this modifier
+      # key. On macOS only way to drag, a window on any place to move it is using
+      # Ctrl+Cmd (Control+Mod4), and only usable modifier for bindings is on the other
+      # hand Option key (Mod1), so sometimes some options are weird.
+      modifier = "Mod4"; 
       terminal = "alacritty";
       input."*" = {
 	repeat_delay = "200";
