@@ -111,8 +111,6 @@
   alt-s = 'layout v_accordion'
   alt-w = 'layout h_accordion'
   alt-e = 'layout tiles horizontal vertical'
-  # alt-v = 'join-with right'
-  # alt-g = 'join-with down'
   alt-ctrl-v = 'split vertical'
   alt-ctrl-h = 'split horizontal'
 
