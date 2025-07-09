@@ -4,9 +4,6 @@
 	];
 
 	xdg.configFile."aerospace/aerospace.toml".text = ''
-  # Place a copy of this config to ~/.aerospace.toml
-  # After that, you can edit ~/.aerospace.toml to your liking
-
   # You can use it to add commands that run after login to macOS user session.
   # 'start-at-login' needs to be 'true' for 'after-login-command' to work
   # Available commands: https://nikitabobko.github.io/AeroSpace/commands
@@ -21,8 +18,8 @@
   start-at-login = true
 
   # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-  enable-normalization-flatten-containers = true
-  enable-normalization-opposite-orientation-for-nested-containers = true
+  enable-normalization-flatten-containers = false
+  enable-normalization-opposite-orientation-for-nested-containers = false
 
   # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
   # The 'accordion-padding' specifies the size of accordion padding
@@ -47,7 +44,7 @@
   # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
   # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
   # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-  automatically-unhide-macos-hidden-apps = false
+  automatically-unhide-macos-hidden-apps = true
 
   # Possible values: (qwerty|dvorak|colemak)
   # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -63,12 +60,12 @@
   #                 See:
   #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
   [gaps]
-  inner.horizontal = 0
-  inner.vertical = 0
-  outer.left = 0
-  outer.bottom = 0
-  outer.top = 0
-  outer.right = 0
+  inner.horizontal = 5
+  inner.vertical = 5
+  outer.left = 10
+  outer.bottom = 10
+  outer.top = 10
+  outer.right = 10
 
   # 'main' binding mode declaration
   # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -94,18 +91,7 @@
   # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-  # You can uncomment the following lines to open up terminal with alt + enter shortcut
-  # (like in i3)
-  # alt-enter = '''exec-and-forget osascript -e '
-  # tell application "Terminal"
-  #     do script
-  #     activate
-  # end tell'
-  # '''
-
-  # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-  alt-slash = 'layout tiles horizontal vertical'
-  alt-comma = 'layout accordion horizontal vertical'
+  alt-enter = 'exec-and-forget alacritty'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#focus
   alt-h = 'focus left'
@@ -118,6 +104,17 @@
   alt-shift-j = 'move down'
   alt-shift-k = 'move up'
   alt-shift-l = 'move right'
+
+  alt-f = 'fullscreen'
+  alt-shift-space = 'layout floating tiling'
+  alt-shift-r = 'reload-config'
+  alt-s = 'layout v_accordion'
+  alt-w = 'layout h_accordion'
+  alt-e = 'layout tiles horizontal vertical'
+  # alt-v = 'join-with right'
+  # alt-g = 'join-with down'
+  alt-ctrl-v = 'split vertical'
+  alt-ctrl-h = 'split horizontal'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#resize
   alt-minus = 'resize smart -50'
@@ -133,28 +130,6 @@
   alt-7 = 'workspace 7'
   alt-8 = 'workspace 8'
   alt-9 = 'workspace 9'
-  # alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-  # alt-b = 'workspace B'
-  # alt-c = 'workspace C'
-  # alt-d = 'workspace D'
-  # alt-e = 'workspace E'
-  # alt-f = 'workspace F'
-  # alt-g = 'workspace G'
-  # alt-i = 'workspace I'
-  # alt-m = 'workspace M'
-  # alt-n = 'workspace N'
-  # alt-o = 'workspace O'
-  # alt-p = 'workspace P'
-  # alt-q = 'workspace Q'
-  # alt-r = 'workspace R'
-  # alt-s = 'workspace S'
-  # alt-t = 'workspace T'
-  # alt-u = 'workspace U'
-  # alt-v = 'workspace V'
-  # alt-w = 'workspace W'
-  # alt-x = 'workspace X'
-  # alt-y = 'workspace Y'
-  # alt-z = 'workspace Z'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
   alt-shift-1 = 'move-node-to-workspace 1'
@@ -166,28 +141,6 @@
   alt-shift-7 = 'move-node-to-workspace 7'
   alt-shift-8 = 'move-node-to-workspace 8'
   alt-shift-9 = 'move-node-to-workspace 9'
-  # alt-shift-a = 'move-node-to-workspace A'
-  # alt-shift-b = 'move-node-to-workspace B'
-  # alt-shift-c = 'move-node-to-workspace C'
-  # alt-shift-d = 'move-node-to-workspace D'
-  # alt-shift-e = 'move-node-to-workspace E'
-  # alt-shift-f = 'move-node-to-workspace F'
-  # alt-shift-g = 'move-node-to-workspace G'
-  # alt-shift-i = 'move-node-to-workspace I'
-  # alt-shift-m = 'move-node-to-workspace M'
-  # alt-shift-n = 'move-node-to-workspace N'
-  # alt-shift-o = 'move-node-to-workspace O'
-  # alt-shift-p = 'move-node-to-workspace P'
-  # alt-shift-q = 'move-node-to-workspace Q'
-  # alt-shift-r = 'move-node-to-workspace R'
-  # alt-shift-s = 'move-node-to-workspace S'
-  # alt-shift-t = 'move-node-to-workspace T'
-  # alt-shift-u = 'move-node-to-workspace U'
-  # alt-shift-v = 'move-node-to-workspace V'
-  # alt-shift-w = 'move-node-to-workspace W'
-  # alt-shift-x = 'move-node-to-workspace X'
-  # alt-shift-y = 'move-node-to-workspace Y'
-  # alt-shift-z = 'move-node-to-workspace Z'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
   alt-tab = 'workspace-back-and-forth'
@@ -199,26 +152,14 @@
 
   # 'service' binding mode declaration.
   # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-  [mode.service.binding]
-  esc = ['reload-config', 'mode main']
-  r = ['flatten-workspace-tree', 'mode main'] # reset layout
-  f = [
-      'layout floating tiling',
-      'mode main',
-  ] # Toggle between floating and tiling layout
-  backspace = ['close-all-windows-but-current', 'mode main']
+  # [mode.service.binding]
+  # esc = ['reload-config', 'mode main']
+  # r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
-  # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-  #s = ['layout sticky tiling', 'mode main']
-
-  alt-shift-h = ['join-with left', 'mode main']
-  alt-shift-j = ['join-with down', 'mode main']
-  alt-shift-k = ['join-with up', 'mode main']
-  alt-shift-l = ['join-with right', 'mode main']
-
-  down = 'volume down'
-  up = 'volume up'
-  shift-down = ['volume set 0', 'mode main']
+  # alt-shift-h = ['join-with left', 'mode main']
+  # alt-shift-j = ['join-with down', 'mode main']
+  # alt-shift-k = ['join-with up', 'mode main']
+  # alt-shift-l = ['join-with right', 'mode main']
 
   [[on-window-detected]]
   if.app-id = 'com.apple.finder'
