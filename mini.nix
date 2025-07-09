@@ -14,7 +14,7 @@
   homebrew = {
     enable = true;
     brews = [];
-    casks = [ "alacritty" "neardrop" "nikitabobko/tab/aerospace" ];
+    casks = [ "alacritty" "neardrop" "nikitabobko/tab/aerospace" "linearmouse" ];
   };
 
   system.stateVersion = 6;
