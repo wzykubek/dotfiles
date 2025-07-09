@@ -1,7 +1,7 @@
 { pkgs, username, ... }: {
   imports = [
     ./modules/common.nix
-    ./modules/aerospace.nix
+    ./modules/aerospace/default.nix
     ./modules/linearmouse/default.nix
   ];
 
