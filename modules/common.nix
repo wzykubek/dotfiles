@@ -1,4 +1,4 @@
-{ pkgs, username, ... }: {
+{ pkgs, username, nixvim, ... }: {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [ neovim gnupg curl zellij ];
@@ -17,4 +17,13 @@
       shell = pkgs.zsh;
     };
   };
+
+	home-manager = {
+		useGlobalPkgs = true;
+		useUserPackages = false;
+		sharedModules = [
+			nixvim.homeManagerModules.nixvim
+		];
+		backupFileExtension = "bak";
+	};
 }

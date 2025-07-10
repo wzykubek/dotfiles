@@ -15,46 +15,29 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, nixvim, ... }:
+  outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, nixvim, ... }:
   let
     username = "wzykubek";
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
   in {
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./home/latitude.nix
-      ];
-
-      extraSpecialArgs = {
-        inherit pkgs username;
-      };
-    };
-
     darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         nix-homebrew.darwinModules.nix-homebrew
         home-manager.darwinModules.home-manager
-        ({ pkgs, ... }: {
-          imports = [
-            (import ./modules/common.nix { inherit pkgs username; })
-            (import ./mini.nix { inherit pkgs username; })
-          ];
-        })
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = false;
-						sharedModules = [
-							nixvim.homeManagerModules.nixvim
-						];
-            backupFileExtension = "bak";
-            users.${username} = { pkgs, ... }: import ./home/mini.nix { inherit pkgs username; };
-          };
-        }
+
+        ./modules/common.nix
+        ./mini.nix
+
+				{ 
+					home-manager.users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; }; 
+				}
       ];
+      
+			specialArgs = {
+        inherit pkgs username nixvim;
+      };
     };
 
     nixosConfigurations."latitude" = nixpkgs.lib.nixosSystem {
@@ -62,23 +45,18 @@
 
       modules = [
         home-manager.nixosModules.home-manager
+
         ./modules/common.nix
         ./latitude.nix
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = false;
-						sharedModules = [
-							nixvim.homeManagerModules.nixvim
-						];
-            backupFileExtension = "bak";
-            users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; };
-          };
-        }
+
+				{ 
+					home-manager.users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; }; 
+				}
+
       ];
 
       specialArgs = {
-        inherit pkgs username;
+        inherit pkgs username nixvim;
       };
     };
   };
