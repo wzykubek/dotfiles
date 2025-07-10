@@ -24,7 +24,15 @@
   
   programs.xwayland.enable = true;
   services.libinput.enable = true;
-  services.printing.enable = true;
+  services.printing = {
+		enable = true;
+		browsing = true;
+	};
+	services.avahi = {
+	  enable = true;
+		nssmdns = true;
+	};
+	services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
   
   programs.sway = {
