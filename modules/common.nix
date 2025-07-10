@@ -1,8 +1,8 @@
 { pkgs, username, nixvim, ... }: {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  environment.systemPackages = with pkgs; [ 
-		neovim gnupg curl zellij 
+  environment.systemPackages = with pkgs; [
+		neovim gnupg curl zellij
 	];
 
   programs.zsh.enable = true;
@@ -10,19 +10,6 @@
   environment.shellAliases = {
     vim = "nvim";
   };
-
-	fonts = {
-	  enableDefaultPackages = true;
-		packages = with pkgs; [
-			nerd-fonts.iosevka
-		];
-
-		fontconfig = {
-		  defaultFonts = {
-			  monospace = [ "Iosevka Nerd Font Mono" ];
-			};
-		};
-	};
 
   users.users = {
     "${username}" = {

@@ -17,5 +17,16 @@
     casks = [ "alacritty" "neardrop" "nikitabobko/tab/aerospace" "linearmouse" ];
   };
 
+  home-manager.users.${username} = {
+    imports = [
+      ./home/modules/common.nix
+      ./home/modules/aerospace.nix
+      ./home/modules/linearmouse.nix
+    ];
+
+    home.username = username;
+    home.homeDirectory = /Users/${username};
+  };
+
   system.stateVersion = 6;
 }

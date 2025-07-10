@@ -18,8 +18,6 @@
   outputs = { nixpkgs, nix-darwin, home-manager, nix-homebrew, nixvim, ... }:
   let
     username = "wzykubek";
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
   in {
     darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
@@ -29,19 +27,16 @@
 
         ./modules/common.nix
         ./mini.nix
-
-				{ 
-					home-manager.users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; }; 
-				}
       ];
-      
-			specialArgs = {
-        inherit pkgs username nixvim;
+
+      specialArgs = {
+        pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
+        inherit username nixvim;
       };
     };
 
     nixosConfigurations."latitude" = nixpkgs.lib.nixosSystem {
-      inherit system;
+      system = "x86_64-linux";
 
       modules = [
         home-manager.nixosModules.home-manager
@@ -49,14 +44,12 @@
         ./modules/common.nix
         ./latitude.nix
 
-				{ 
-					home-manager.users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; }; 
-				}
 
       ];
 
       specialArgs = {
-        inherit pkgs username nixvim;
+        pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
+        inherit username nixvim;
       };
     };
   };

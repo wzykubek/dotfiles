@@ -8,7 +8,7 @@
       # key. On macOS only way to drag, a window on any place to move it is using
       # Ctrl+Cmd (Control+Mod4), and only usable modifier for bindings is on the other
       # hand Option key (Mod1), so sometimes some options are weird.
-      modifier = "Mod4"; 
+      modifier = "Mod4";
       terminal = "alacritty";
       input."*" = {
 				repeat_delay = "200";
@@ -73,6 +73,4 @@
   ];
 
   services.mako.enable = true;
-
-  home.stateVersion = "25.05";
 }
