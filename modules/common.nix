@@ -1,7 +1,7 @@
 { pkgs, username, ... }: {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  environment.systemPackages = with pkgs; [ neovim gnupg zellij ];
+  environment.systemPackages = with pkgs; [ neovim gnupg curl zellij ];
 
   programs.zsh.enable = true;
 

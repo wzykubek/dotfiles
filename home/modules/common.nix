@@ -1,8 +1,8 @@
 { pkgs, ... }: {
+	imports = [ ./nixvim.nix ];
 	home.packages = with pkgs; [
 		fzf
 		git
-		neovim
 		eza
 		fd
 		ripgrep

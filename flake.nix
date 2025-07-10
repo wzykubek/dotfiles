@@ -6,11 +6,16 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, nixvim, ... }:
   let
     username = "wzykubek";
     system = "x86_64-linux";
@@ -42,6 +47,9 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = false;
+						sharedModules = [
+							nixvim.homeManagerModules.nixvim
+						];
             backupFileExtension = "bak";
             users.${username} = { pkgs, ... }: import ./home/mini.nix { inherit pkgs username; };
           };
@@ -56,15 +64,17 @@
         home-manager.nixosModules.home-manager
         ./modules/common.nix
         ./latitude.nix
-
-        ({ config, pkgs, ...}: {
+        {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = false;
+						sharedModules = [
+							nixvim.homeManagerModules.nixvim
+						];
             backupFileExtension = "bak";
             users.${username} = { pkgs, lib, ... }: import ./home/latitude.nix { inherit pkgs lib username; };
           };
-        })
+        }
       ];
 
       specialArgs = {

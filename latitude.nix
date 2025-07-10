@@ -43,7 +43,5 @@
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
 
-  environment.systemPackages = with pkgs; [ neovim curl ];
-
   system.stateVersion = "25.05";
 }
