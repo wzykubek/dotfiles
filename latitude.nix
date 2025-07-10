@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, ... }: {
+{ lib, username, ... }: {
   imports = [ ./hardware-configuration.nix ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -9,7 +9,7 @@
   time.timeZone = "Europe/Warsaw";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus-16";
+    # font = "Lat2-Terminus-16";
     keyMap = lib.mkForce "pl";
     useXkbConfig = true;
   };

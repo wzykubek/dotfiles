@@ -59,6 +59,20 @@
 		'';
 	};
 
+	programs.alacritty = {
+		enable = true;
+	  theme = "catppuccin";
+		settings = {
+			font = {
+			  normal.family = "Iosevka Nerd Font Mono";
+			};
+			window = {
+				padding.x = 5;
+				padding.y = 5;
+			};
+		};
+	};
+
 	programs.gpg.enable = true;
 	services.gpg-agent = {
 		enable = true;
