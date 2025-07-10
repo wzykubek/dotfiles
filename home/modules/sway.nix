@@ -9,7 +9,6 @@
       # Ctrl+Cmd (Control+Mod4), and only usable modifier for bindings is on the other
       # hand Option key (Mod1), so sometimes some options are weird.
       modifier = "Mod4";
-      terminal = "alacritty";
       input."*" = {
 				repeat_delay = "200";
 				repeat_rate = "40";
@@ -65,6 +64,10 @@
         "Mod4+w" = "kill";
         "Mod4+q" = "kill"; # TODO: Actual killall
       };
+			gaps = {
+				inner = 5;
+				outer = 10;
+			};
     };
   };
 
