@@ -1,7 +1,7 @@
-{ pkgs, lib, username, ... }: {
+{ pkgs, ... }: {
   wayland.windowManager.sway = {
     enable = true;
-    config = rec {
+    config = {
       # Some of these bindings are weird, because I'm trying to achieve similar
       # setup on my both machines (Linux and macOS) and unfortunately, I need to
       # do stupind and unlogical workarounds for simple problems. Like this modifier
@@ -11,13 +11,14 @@
       modifier = "Mod4"; 
       terminal = "alacritty";
       input."*" = {
-	repeat_delay = "200";
-	repeat_rate = "40";
-	natural_scroll = "enabled";
+				repeat_delay = "200";
+				repeat_rate = "40";
+				natural_scroll = "enabled";
       };
       keybindings = {
-        "Mod1+return"      = "exec alacritty";
+        "Mod1+return"      = "exec $TERMINAL";
         "Mod1+space"       = "exec rofi -show drun";
+				"Mod1+b"           = "exec $BROWSER";
 
         "Mod1+h"           = "focus left";
         "Mod1+j"           = "focus down";
@@ -68,11 +69,10 @@
   };
 
   home.packages = with pkgs; [
-    swaylock swayidle grim slurp wl-clipboard
-    mako alacritty rofi-wayland
+    swaylock swayidle grim slurp wl-clipboard mako rofi-wayland
   ];
 
   services.mako.enable = true;
 
-  # home.stateVersion = "25.05";
+  home.stateVersion = "25.05";
 }
