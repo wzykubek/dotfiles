@@ -53,6 +53,10 @@
       TERMINAL = "alacritty";
     };
 
+    history.size = 10000;
+    history.ignoreAllDups = true;
+    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+
     initContent = ''
       			alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
       			alias -g -- -h='--help 2>&1 | bat --language=help --style=plain'
