@@ -1,5 +1,6 @@
 { pkgs, ... }: {
 	imports = [ ./nixvim.nix ];
+
 	home.packages = with pkgs; [
 		fzf
 		git
@@ -9,9 +10,10 @@
 		bat
 		dust
 		nixd
+    nixfmt-rfc-style
 	];
 
-	programs.starship = {
+  programs.starship = {
 		enable = true;
 		settings = {
 			add_newline = true;
@@ -23,13 +25,13 @@
 
 	programs.zsh = {
 		enable = true;
+		enableCompletion = false; # Fix startup speeds
 		syntaxHighlighting.enable = true;
 
 		shellAliases = {
-			sudo = "sudo "; # nie działa
-			vim = "nvim";
+			sudo = "sudo ";
 			tmux = "zellij";
-			ls = "eza --hyperlink --git";
+			ls = "eza --hyperlink --git --icons=auto";
 			cat = "bat";
 			less = "bat --paging=always";
 			diff = "diff --color=auto";
@@ -41,6 +43,7 @@
 			enable = true;
 			plugins = [
 				{ name = "jeffreytse/zsh-vi-mode"; }
+				{ name = "Aloxaf/fzf-tab"; }
 			];
 		};
 
@@ -53,23 +56,35 @@
 			alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 			alias -g -- -h='--help 2>&1 | bat --language=help --style=plain'
 
-			source ${pkgs.fzf}/share/fzf/completion.zsh
-			source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-
-			eval "$(starship init zsh)"
+      zstyle ':completion:*' menu no
+      zstyle ':completion:*:descriptions' format '[%d]'
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 		'';
+	};
+
+	programs.fzf = {
+		enable = true;
+		enableZshIntegration = true;
+	};
+
+	programs.zoxide = {
+		enable = true;
+		enableZshIntegration = true;
+		options = [ "--cmd cd" ];
 	};
 
 	programs.alacritty = {
 		enable = true;
-	  theme = "catppuccin";
+	  theme = "gruvbox_dark";
 		settings = {
 			font = {
-			  normal.family = "Iosevka Nerd Font Mono";
+			  normal.family = "Iosevka Nerd Font";
 			};
 			window = {
-				padding.x = 5;
-				padding.y = 5;
+				padding.x = 10;
+				padding.y = 10;
+				opacity = 0.85;
+				blur = true;
 			};
 		};
 	};

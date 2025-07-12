@@ -6,6 +6,7 @@
 	];
 
   programs.zsh.enable = true;
+	programs.zsh.enableGlobalCompInit = false; # Fix startup times
 
   environment.shellAliases = {
     vim = "nvim";
