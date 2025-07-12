@@ -1,4 +1,10 @@
-{ pkgs, lib, username, ... }: {
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
+{
   imports = [ ./hardware-configuration.nix ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -9,23 +15,22 @@
   time.timeZone = "Europe/Warsaw";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    # font = "Lat2-Terminus-16";
     keyMap = lib.mkForce "pl";
     useXkbConfig = true;
   };
 
   fonts = {
-	  enableDefaultPackages = true;
-		packages = with pkgs; [
-			nerd-fonts.iosevka
-		];
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.iosevka
+    ];
 
-		fontconfig = {
-		  defaultFonts = {
-			  monospace = [ "Iosevka Nerd Font Mono" ];
-			};
-		};
-	};
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Iosevka Nerd Font Mono" ];
+      };
+    };
+  };
 
   services.pipewire = {
     enable = true;
@@ -38,14 +43,14 @@
   programs.xwayland.enable = true;
   services.libinput.enable = true;
   services.printing = {
-		enable = true;
-		browsing = true;
-	};
-	services.avahi = {
-	  enable = true;
-		nssmdns = true;
-	};
-	services.gvfs.enable = true;
+    enable = true;
+    browsing = true;
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+  services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
   programs.sway = {
@@ -62,29 +67,29 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = true;
   security.polkit.enable = true;
-  security.pam.services = { 
-    swaylock = {}; 
+  security.pam.services = {
+    swaylock = { };
     # https://support.yubico.com/hc/en-us/articles/360016649099-Ubuntu-Linux-login-guide-U2F
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
 
-	services.tlp = {
-		enable = true;
-		settings = {
-			CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-			CPU_SCALING_GOVERNOR_ON_AC = "performance";
-			
-			CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-			CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
 
-			CPU_MIN_PERF_ON_AC = 0;
-			CPU_MAX_PERF_ON_AC = 100;
-			CPU_MIN_PERF_ON_BAT = 0;
-			CPU_MAX_PERF_ON_BAT = 60;
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-			START_CHARGE_THRESH_BAT0 = 40;
-			# STOP_CHARGE_THRESH_BAT0 = 80;
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 60;
+
+      START_CHARGE_THRESH_BAT0 = 40;
+      # STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
 
@@ -97,7 +102,10 @@
     home.username = username;
     home.homeDirectory = "/home/${username}";
 
-    home.packages = with pkgs; [ google-chrome pantheon.elementary-files ];
+    home.packages = with pkgs; [
+      pantheon.elementary-files
+      google-chrome
+    ];
     home.sessionVariables.BROWSER = "google-chrome-stable --ozone-platform=wayland";
 
     gtk = {

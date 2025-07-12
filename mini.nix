@@ -1,4 +1,5 @@
-{ pkgs, username, ... }: {
+{ username, ... }:
+{
   users.users.${username}.home = /Users/${username};
   system.primaryUser = username;
 
@@ -13,8 +14,13 @@
 
   homebrew = {
     enable = true;
-    brews = [];
-    casks = [ "alacritty" "neardrop" "nikitabobko/tab/aerospace" "linearmouse" ];
+    brews = [ ];
+    casks = [
+      "alacritty"
+      "neardrop"
+      "nikitabobko/tab/aerospace"
+      "linearmouse"
+    ];
   };
 
   home-manager.users.${username} = {
