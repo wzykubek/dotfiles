@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   wayland.windowManager.sway = {
     enable = true;
+		package = pkgs.swayfx;
     config = {
       # Some of these bindings are weird, because I'm trying to achieve similar
       # setup on my both machines (Linux and macOS) and unfortunately, I need to
@@ -8,12 +9,16 @@
       # key. On macOS only way to drag, a window on any place to move it is using
       # Ctrl+Cmd (Control+Mod4), and only usable modifier for bindings is on the other
       # hand Option key (Mod1), so sometimes some options are weird.
-      modifier = "Mod4";
+
+      modifier = "Mod4";																		# Modifier for moving windows arround
+
       input."*" = {
-				repeat_delay = "200";
-				repeat_rate = "40";
+				repeat_delay = "200";																# Initial delay before repeating key
+				repeat_rate = "40";																	# Delay each time after initial delay
 				natural_scroll = "enabled";
+        xkb_layout = "pl";
       };
+
       keybindings = {
         "Mod1+return"      = "exec $TERMINAL";
         "Mod1+space"       = "exec rofi -show drun";
@@ -64,11 +69,72 @@
         "Mod4+w" = "kill";
         "Mod4+q" = "kill"; # TODO: Actual killall
       };
+
 			gaps = {
 				inner = 5;
 				outer = 10;
 			};
+
+			window.border = 1;
+			window.titlebar = false;
+			
+			colors = {
+				focused = {
+					border = "#83a598";   # blue
+					background = "#3c3836";
+					text = "#ebdbb2";      # fg
+					indicator = "#fabd2f"; # yellow
+					childBorder = "#83a598";
+				};
+
+				unfocused = {
+					border = "#928374";   # gray
+					background = "#282828";
+					text = "#ebdbb2";
+					indicator = "#928374";
+					childBorder = "#928374";
+				};
+
+				focusedInactive = {
+					border = "#504945";   # bg2
+					background = "#282828";
+					text = "#a89984";
+					indicator = "#504945";
+					childBorder = "#504945";
+				};
+
+				urgent = {
+					border = "#fb4934";   # red
+					background = "#3c3836";
+					text = "#ebdbb2";
+					indicator = "#fb4934";
+					childBorder = "#fb4934";
+				};
+
+				placeholder = {
+					border = "#7c6f64";
+					background = "#282828";
+					text = "#ebdbb2";
+					indicator = "#7c6f64";
+					childBorder = "#7c6f64";
+				};
+			};
+
+
+			output."*" = {
+				bg = "~/Pictures/Wallpapers/wallhaven-1q83qg_1920x1080.png fill";
+			};
     };
+
+		extraConfig = ''
+		blur enable
+		blur_xray enable
+		corner_radius 20
+		shadows enable
+		# shadows_on_csd enable
+		'';
+
+		checkConfig = false; # Broken with swayfx
   };
 
   home.packages = with pkgs; [
