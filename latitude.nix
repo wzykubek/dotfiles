@@ -62,7 +62,12 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = true;
   security.polkit.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services = { 
+    swaylock = {}; 
+    # https://support.yubico.com/hc/en-us/articles/360016649099-Ubuntu-Linux-login-guide-U2F
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
 
 	services.tlp = {
 		enable = true;
