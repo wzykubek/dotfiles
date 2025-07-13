@@ -21,10 +21,6 @@
 
   fonts = {
     enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.iosevka
-    ];
-
     fontconfig = {
       defaultFonts = {
         monospace = [ "Iosevka Nerd Font Mono" ];

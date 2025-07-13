@@ -83,7 +83,7 @@
     theme = "gruvbox_dark";
     settings = {
       font = {
-        normal.family = "Iosevka Nerd Font";
+        normal.family = "Iosevka Nerd Font Mono";
       };
       window = {
         padding.x = 10;

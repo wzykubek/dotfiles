@@ -20,6 +20,8 @@
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false; # Fix startup times
 
+  fonts.packages = with pkgs; [ nerd-fonts.iosevka ];
+
   environment.shellAliases = {
     vim = "nvim";
   };
