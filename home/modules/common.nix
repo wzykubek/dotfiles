@@ -12,6 +12,8 @@
     dust
     nixd
     nixfmt-rfc-style
+
+    zed-editor
   ];
 
   programs.starship = {
@@ -55,7 +57,11 @@
 
     history.size = 10000;
     history.ignoreAllDups = true;
-    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+    history.ignorePatterns = [
+      "rm *"
+      "pkill *"
+      "cp *"
+    ];
 
     initContent = ''
       			alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'

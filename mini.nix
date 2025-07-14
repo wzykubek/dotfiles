@@ -32,6 +32,10 @@
 
     home.username = username;
     home.homeDirectory = /Users/${username};
+
+    programs.alacritty.settings.font.size = 18;
+
+    home.stateVersion = "25.05";
   };
 
   system.stateVersion = 6;

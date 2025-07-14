@@ -124,6 +124,8 @@
     };
     home.sessionVariables.GTK_THEME = "Adwaita-dark";
 
+    programs.alacritty.settings.font.size = 16;
+
     home.stateVersion = "25.05";
   };
 
