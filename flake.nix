@@ -43,8 +43,8 @@
           nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
 
-          ./modules/common.nix
-          ./mini.nix
+          ./modules/common-desktop.nix
+          ./mini/configuration.nix
         ];
 
         specialArgs = {
@@ -62,8 +62,8 @@
         modules = [
           home-manager.nixosModules.home-manager
 
-          ./modules/common.nix
-          ./latitude.nix
+          ./modules/common-desktop.nix
+          ./latitude/configuration.nix
 
         ];
 

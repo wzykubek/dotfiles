@@ -25,9 +25,9 @@
 
   home-manager.users.${username} = {
     imports = [
-      ./home/modules/common.nix
-      ./home/modules/aerospace.nix
-      ./home/modules/linearmouse.nix
+      ./../home/modules/common.nix
+      ./../home/modules/aerospace.nix
+      ./../home/modules/linearmouse.nix
     ];
 
     home.username = username;

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware.nix ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -91,8 +91,8 @@
 
   home-manager.users.${username} = {
     imports = [
-      ./home/modules/common.nix
-      ./home/modules/sway.nix
+      ./../home/modules/common.nix
+      ./../home/modules/sway.nix
     ];
 
     home.username = username;
