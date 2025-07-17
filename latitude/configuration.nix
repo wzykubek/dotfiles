@@ -10,7 +10,33 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "latitude";
-  networking.networkmanager.enable = true;
+  systemd.services.ModemManager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+
+    ensureProfiles.profiles = {
+      Cellural = {
+        connection = {
+          id = "Orange";
+          uuid = "533c7844-f8a1-42e6-ae45-90b993119453";
+          type = "gsm";
+          interface-name = "cdc-wdm0";
+        };
+        gsm = {
+          apn = "internetipv6";
+          username = "internet";
+          password = "internet";
+        };
+        ipv4 = {
+          method = "auto";
+        };
+        ipv6 = {
+          addr-gen-mode = "default";
+          method = "auto";
+        };
+      };
+    };
+  };
 
   time.timeZone = "Europe/Warsaw";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -57,7 +83,10 @@
   users.users.${username} = {
     isNormalUser = true;
     home = "/home/${username}";
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
 
   security.sudo.enable = true;
