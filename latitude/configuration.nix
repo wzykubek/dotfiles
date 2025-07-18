@@ -10,7 +10,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "latitude";
-  systemd.services.ModemManager.enable = true;
   networking.networkmanager = {
     enable = true;
 
@@ -18,14 +17,12 @@
       Cellural = {
         connection = {
           id = "Orange";
-          uuid = "533c7844-f8a1-42e6-ae45-90b993119453";
+          uuid = "39fca8dc-bc24-4fa1-b964-dc39d6101b36";
           type = "gsm";
           interface-name = "cdc-wdm0";
         };
         gsm = {
-          apn = "internetipv6";
-          username = "internet";
-          password = "internet";
+          apn = "internet";
         };
         ipv4 = {
           method = "auto";
