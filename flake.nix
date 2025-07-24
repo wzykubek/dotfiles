@@ -3,6 +3,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +32,7 @@
   outputs =
     {
       nixpkgs,
+      disko,
       nix-darwin,
       home-manager,
       nix-homebrew,
@@ -43,7 +49,7 @@
           nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
 
-          ./modules/common-desktop.nix
+          ./modules/common/desktop/configuration.nix
           ./mini/configuration.nix
         ];
 
@@ -62,7 +68,7 @@
         modules = [
           home-manager.nixosModules.home-manager
 
-          ./modules/common-desktop.nix
+          ./modules/common/desktop/configuration.nix
           ./latitude/configuration.nix
 
         ];
@@ -74,6 +80,15 @@
           };
           inherit username nixvim;
         };
+      };
+
+      nixosConfigurations."hetzner" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        modules = [
+          ./hetzner/configuration.nix
+          disko.nixosModules.disko
+        ];
       };
     };
 }
